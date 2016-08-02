@@ -8,14 +8,24 @@ Forked from [zeit/hyperlinks](https://github.com/zeit/hyperlinks).
 
 ## How to use
 
-[Install HyperTerm](https://hyperterm.org/#installation) and add `hyperlinks` to `plugins`
-in `~/.hyperterm.js`.
+1. Install [HyperTerm](https://hyperterm.org/#installation) (obvi...)
+2. Install this plugin via npm:
+````
+npm install hyperlinks-iterm
+````
+3. add `hyperlinks-iterm` to `plugins`
+in `~/.hyperterm.js`:
+````
+plugins: [
+  "hyperlinks-iterm"
+],
+````
 
-- hold the `Command` key to activate and highlight links, then click one to open it in your default browser.
+4. hold the `Command` key to activate and highlight links, then click one to open it in your default browser.
 
 ## Customizing styles
 
-Add custom styles to `termCSS` in your `~/.hyperterm.js`.
+Add custom styles to `termCSS` in your `~/.hyperterm.js`. Changing the styles for `x-screen a` isn't recommended, because without holding `cmd`, the links won't work anyway.
 
 ```js
 termCSS: `

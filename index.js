@@ -34,9 +34,12 @@ exports.decorateTerm = function (Term, { React }) {
         onTerminalReady.apply(this, arguments);
 
         const screenNode = term.scrollPort_.getScreenNode();
+        screenNode.addEventListener('keydown', self.onGlobalKeyDown.bind(self));
+        screenNode.addEventListener('keyup', self.onGlobalKeyUp.bind(self));
         screenNode.addEventListener('click', self.onLinkClick.bind(self));
         screenNode.addEventListener('mouseover', self.onLinkMouseOver.bind(self));
         screenNode.addEventListener('mouseout', self.onLinkMouseOut.bind(self));
+        console.log('loaded...')
       }
     }
 
@@ -125,6 +128,22 @@ exports.decorateTerm = function (Term, { React }) {
       return `http://${url}`;
     }
 
+    onGlobalKeyDown (e) {
+      if(e.metaKey || e.ctrlKey){
+        const { id } = e.target.dataset;
+        for (const a of this.getAllAnchors()) {
+          a.classList.add('active');
+        }
+      }
+    }
+
+    onGlobalKeyUp (e) {
+      const { id } = e.target.dataset;
+      for (const a of this.getAllAnchors()) {
+        a.classList.remove('active');
+      }
+    }
+
     onLinkClick (e) {
       if ('A' !== e.target.nodeName) return;
 
@@ -133,12 +152,6 @@ exports.decorateTerm = function (Term, { React }) {
       if (e.metaKey) {
         // open in user's default browser when holding command key
         shell.openExternal(e.target.href);
-      } else {
-        store.dispatch({
-          type: 'SESSION_URL_SET',
-          uid: this.props.uid,
-          url: e.target.href
-        });
       }
     }
 
@@ -165,6 +178,11 @@ exports.decorateTerm = function (Term, { React }) {
       return screenNode.querySelectorAll(`a[data-id="${id}"]`);
     }
 
+    getAllAnchors () {
+      const screenNode = this.term.scrollPort_.getScreenNode();
+      return screenNode.querySelectorAll(`a`);
+    }
+
     render () {
       const props = Object.assign({}, this.props, {
         onTerminal: this.onTerminal,
@@ -177,11 +195,18 @@ exports.decorateTerm = function (Term, { React }) {
 
 const styles = `
   x-screen a {
-    color: #ff2e88;
+    color: #ffffff;
     text-decoration: none;
+    cursor: text;
   }
 
-  x-screen a.hover {
+  x-screen a.active {
+    color: #ff2e88;
     text-decoration: underline;
+  }
+
+  x-screen a.active.hover {
+    text-decoration: none;
+    cursor: pointer;
   }
 `;

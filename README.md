@@ -1,6 +1,8 @@
 # hyperlinks
 
-Extension for [HyperTerm](https://hyperterm.org) that automatically links URLs.
+Extension for [HyperTerm](https://hyperterm.org) that automatically links URLs with the iTerm behavior.
+
+Forked from [zeit/hyperlinks](https://github.com/zeit/hyperlinks).
 
 ![Demo](https://cloud.githubusercontent.com/assets/775227/16933009/4fd309a0-4d85-11e6-99b5-720185f4b7d8.gif)
 
@@ -9,21 +11,28 @@ Extension for [HyperTerm](https://hyperterm.org) that automatically links URLs.
 [Install HyperTerm](https://hyperterm.org/#installation) and add `hyperlinks` to `plugins`
 in `~/.hyperterm.js`.
 
-- `Ctrl + C` to abort opening url.
-- hold `Command` key and click a link to open it in your default browser.
+- hold the `Command` key to activate and highlight links, then click one to open it in your default browser.
 
 ## Customizing styles
 
-Add cutome styles to `termCSS` in your `~/.hyperterm.js`.
+Add custom styles to `termCSS` in your `~/.hyperterm.js`.
 
 ```js
 termCSS: `
   x-screen a {
-    color: blue;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: text;
   }
 
-  x-screen a.hover {
+  x-screen a.active {
+    color: #ff2e88;
+    text-decoration: underline;
+  }
+
+  x-screen a.active.hover {
     text-decoration: none;
+    cursor: pointer;
   }
 `
 ```

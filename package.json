@@ -1,7 +1,7 @@
 {
-  "name": "hyperlinks",
-  "version": "0.2.0",
-  "description": "Extension for HyperTerm that automatically links URLs",
+  "name": "hyperlinks-iterm",
+  "version": "0.1.0",
+  "description": "Extension for HyperTerm that automatically links URLs with the iTerm behaviour",
   "keywords": ["hyperterm"],
   "dependencies": {
     "email-regex": "1.0.0",

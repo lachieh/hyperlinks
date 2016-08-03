@@ -9,13 +9,13 @@ Forked from [zeit/hyperlinks](https://github.com/zeit/hyperlinks).
 ## How to use
 
 1. Install [HyperTerm](https://hyperterm.org/#installation) (obvi...)
-2. Install this plugin via npm:
-````
+2. Install this plugin via npm:  
+   
+   ````
 npm install hyperlinks-iterm
 ````
-3. add `hyperlinks-iterm` to `plugins`
-in `~/.hyperterm.js`:
-````
+3. add `hyperlinks-iterm` to `plugins` in `~/.hyperterm.js`:  
+  ````
 plugins: [
   "hyperlinks-iterm"
 ],
